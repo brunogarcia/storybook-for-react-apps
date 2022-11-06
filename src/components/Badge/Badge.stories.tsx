@@ -17,3 +17,11 @@ export const Default = Template.bind({})
 Default.args = {
   text: 'Comfort food',
 }
+
+export const DarkTheme = Template.bind({})
+DarkTheme.args = {
+  text: 'Comfort food',
+}
+DarkTheme.parameters = {
+  theme: 'dark',
+}
