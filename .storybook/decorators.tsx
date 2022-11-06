@@ -1,4 +1,5 @@
 import React from 'react'
+import { withDesign } from 'storybook-addon-designs'
 import { ThemeProvider } from 'styled-components'
 
 import { DecoratorFn } from '@storybook/react'
@@ -16,4 +17,4 @@ const withTheme: DecoratorFn = (StoryFn, context) => {
   )
 }
 
-export const globalDecorator = [withTheme]
+export const globalDecorator = [withTheme, withDesign]
