@@ -1,5 +1,5 @@
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
-
+import { globalDecorator } from './decorators'
 import { viewports as breakpoints } from '../src/styles/breakpoints'
 
 // Create custom viewports using widths defined in design tokens
@@ -31,3 +31,5 @@ export const parameters = {
     },
   },
 }
+
+export const decorators = globalDecorator
