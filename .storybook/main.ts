@@ -1,4 +1,5 @@
 module.exports = {
+  staticDirs: ['../public'], // <-- MSW static directory
   stories: [
     '../src/docs/Introduction.stories.mdx',
     '../src/docs/*.stories.mdx',
