@@ -1,4 +1,5 @@
-// src/components/RestaurantCard/RestaurantCard.stories.tsx
+import { expect } from '@storybook/jest'
+import { within, userEvent } from '@storybook/testing-library'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { restaurants } from '../../stub/restaurants'
@@ -33,6 +34,14 @@ export const Default = Template.bind({})
 Default.args = {
   ...restaurants[0], // reuse properties from mock data
 }
+Default.play = ({ canvasElement, args }) => {
+  // get a canvas from canvasElement which can be used to query elements from within
+  const canvas = within(canvasElement)
+  // click on the restaurant card
+  userEvent.click(canvas.getByTestId('restaurant-card'))
+  // assert that the onClick spy was called
+  expect(args.onClick).toHaveBeenCalled()
+}
 
 export const New = Template.bind({})
 New.args = {
@@ -45,6 +54,12 @@ export const Closed = Template.bind({})
 Closed.args = {
   ...Default.args,
   isClosed: true,
+}
+Closed.play = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement)
+  userEvent.click(canvas.getByTestId('restaurant-card'))
+  // this should fail because onClick should not be called
+  expect(args.onClick).not.toHaveBeenCalled()
 }
 
 export const Loading = Template.bind({})

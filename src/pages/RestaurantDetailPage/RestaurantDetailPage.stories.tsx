@@ -1,4 +1,6 @@
 import { rest } from 'msw'
+import { expect } from '@storybook/jest'
+import { within, userEvent } from '@storybook/testing-library'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { BASE_URL } from '../../api'
@@ -83,4 +85,20 @@ Error.parameters = {
       }),
     ],
   },
+}
+
+export const WithModalOpen = Template.bind({})
+// reuse the parameters from Success story
+WithModalOpen.parameters = {
+  ...Success.parameters,
+}
+WithModalOpen.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement)
+
+  // find the "Cheeseburger" food item
+  const item = await canvas.findByText(/Cheeseburger/i)
+  // click on it and expect that the modal is present on screen
+  userEvent.click(item)
+
+  expect(canvas.getByTestId('modal')).toBeInTheDocument()
 }
