@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/preset-create-react-app',
     '@storybook/addon-interactions',
+    '@storybook/addon-a11y',
     'storybook-addon-designs',
   ],
   // enable playback controls feature (Might be default later, but required in 6.4)
